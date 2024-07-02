@@ -11,21 +11,23 @@ trait Associated
     {
         if(isset($this->associations[$key])){
             $association = $this->associations[$key];
-            if(isset($association['complex'])){
+            if(isset($association['complex'])) {
                 $results = new Collection();
                 $linkingEntries = ($association['linking'][1])::where($association['linking'][0], $this->getKey())->get();
-                foreach($linkingEntries as $linkingEntry){
+                foreach ($linkingEntries as $linkingEntry) {
                     $target = ($association['target'][1])::find($linkingEntry->{$association['target'][0]});
                     $result = [];
-                    foreach($association['keep']['linking']['attributes'] as $attribute){
-                        $result[$association['keep']['linking']['prefix'].'.'.$attribute] = $linkingEntry->{$attribute};
+                    foreach ($association['keep']['linking']['attributes'] as $attribute) {
+                        $result[$association['keep']['linking']['prefix'] . '.' . $attribute] = $linkingEntry->{$attribute};
                     }
-                    foreach($association['keep']['target']['attributes'] as $attribute){
-                        $result[$association['keep']['target']['prefix'].'.'.$attribute] = $target->{$attribute};
+                    foreach ($association['keep']['target']['attributes'] as $attribute) {
+                        $result[$association['keep']['target']['prefix'] . '.' . $attribute] = $target->{$attribute};
                     }
                     $results->push($result);
                 }
                 return $results;
+            } else if(isset($association['many'])){
+                return $association['many'][0]::where($association['many'][1], $this->getKey())->get();
             } else {
                 return $association[1]::find($this->{$association[0]});
             }

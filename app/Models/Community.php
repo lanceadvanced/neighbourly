@@ -30,5 +30,4 @@ class Community extends Model
     private array $associations = [
         'address' => [Address::class, 'fk_addressID'],
     ];
-
 }

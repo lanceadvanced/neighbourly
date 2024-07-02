@@ -32,6 +32,7 @@ class Account extends Model
     private array $associations = [
         'userID' => [User::class, 'fk_userID'],
         'communityID' => [Community::class, 'fk_communityID'],
+        'offers' => ['many' => [Offer::class, 'fk_ownerID']],
     ];
 
 }

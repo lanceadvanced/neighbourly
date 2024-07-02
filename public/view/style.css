@@ -1,0 +1,29 @@
+.heading-section {
+    display: flex;
+    align-items: center;
+}
+
+.carousel-slide {
+    height: 200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 5px solid;
+}
+
+.carousel-item:nth-child(1) .carousel-slide {
+    border-color: #f6c244;
+}
+
+.carousel-item:nth-child(2) .carousel-slide {
+    border-color: #3e8558;
+}
+
+.carousel-item:nth-child(3) .carousel-slide {
+    border-color: #2d70f4;
+}
+
+
+

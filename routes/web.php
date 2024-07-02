@@ -10,13 +10,14 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-
+    return view('home');
 });
 
 Route::get('test-client', [TestClientController::class, 'viewTestClient'])->name('test-client');
 Route::post('send-test-request', [TestClientController::class, 'sendTestRequest'])->name('send-test-request');
 Route::get('delete-sample-offer/{offerID}', [OfferController::class, 'deleteSampleOffer'])->name('delete-sample-offer');
 Route::post('create-sample-offer', [OfferController::class, 'createSampleOffer'])->name('create-sample-offer');
+Route::get('create-sample-offers', [OfferController::class, 'createSampleOffersFromJSON']);
 
 Route::get('initialize', function () {
     $city = new City();

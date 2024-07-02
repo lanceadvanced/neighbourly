@@ -25,7 +25,7 @@ class TestClientController extends Controller
         return(redirect(route('test-client'))->with(
             [
                 'requestInfo' => $request->all(),
-                'response' => $response->json()
+                'response' => $response->successful() ? $response->json() : ['status' => 500, 'message' => 'Internal Server Error']
             ]
         ));
     }
@@ -37,5 +37,9 @@ class TestClientController extends Controller
             'response' => Session::get('response'),
             'sampleOffers' => Offer::all(),
         ]);
+    }
+
+    public static function createTestEntries(){
+
     }
 }
