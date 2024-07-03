@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('test-client', [TestClientController::class, 'viewTestClient'])->name('test-client');
 Route::post('send-test-request', [TestClientController::class, 'sendTestRequest'])->name('send-test-request');
