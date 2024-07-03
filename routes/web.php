@@ -8,6 +8,7 @@ use App\Models\City;
 use App\Models\Community;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('home');
@@ -18,6 +19,14 @@ Route::post('send-test-request', [TestClientController::class, 'sendTestRequest'
 Route::get('delete-sample-offer/{offerID}', [OfferController::class, 'deleteSampleOffer'])->name('delete-sample-offer');
 Route::post('create-sample-offer', [OfferController::class, 'createSampleOffer'])->name('create-sample-offer');
 Route::get('create-sample-offers', [OfferController::class, 'createSampleOffersFromJSON']);
+Route::post('results', function(Request $request){
+    sleep(1);
+    return view('results')->with(['search_term' => $request->get('search-term')]);
+})->name('results');
+Route::get('details', function(){
+    sleep(1);
+    return view('details');
+})->name('details');
 
 Route::get('initialize', function () {
     $city = new City();

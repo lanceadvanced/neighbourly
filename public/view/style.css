@@ -25,5 +25,30 @@
     border-color: #2d70f4;
 }
 
+.profile {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #2d70f4;
+    text-align: center;
+    border: 2px solid #a0aec0;
+}
+
+.profile::before {
+    content: 'N';
+    line-height: 38px;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+}
+
+.profile.m {
+    border: 1px solid #a0aec0;
+    background-color: #d066b9;
+}
+
+.profile.m::before {
+    content: 'M';
+}
 
 

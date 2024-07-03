@@ -3,6 +3,21 @@
 
 @endsection
 @section('content')
+    <div class="card mt-5 mb-3">
+        <div class="card-body">
+            <h1 class="mt-3">Welcome</h1>
+            <h2 class="mb-3">Nadine</h2>
+            <h5 class="card-title">Your community</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Wohnortstrasse 111, 3111 Bern</h6>
+            <form method="post" action="{{route('results')}}">
+                @csrf
+                <div class="input-group mb-3 mt-4">
+                    <input type="text" name="search-term" class="form-control" placeholder="What do you need help with?" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-primary" type="submit" id="button-addon2">Find</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="row pt-5 pb-5">
             <div class="col-md-4">
