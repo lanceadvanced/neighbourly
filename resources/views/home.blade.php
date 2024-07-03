@@ -12,18 +12,21 @@
             <form method="post" action="{{route('results')}}">
                 @csrf
                 <div class="input-group mb-3 mt-4">
-                    <input type="text" name="search-term" class="form-control" placeholder="What do you need help with?" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <input type="text" name="search-term" class="form-control" placeholder="What do you need help with?"
+                           aria-label="Recipient's username" aria-describedby="button-addon2">
                     <button class="btn btn-primary" type="submit" id="button-addon2">Find</button>
                 </div>
             </form>
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row pt-5 pb-5">
-            <div class="col-md-4">
-                <img class="mx-auto d-block" src="{{asset('view/logo.png')}}" height="200" alt="neighbourly-logo">
-            </div>
-            <div class="col-md-8 mt-3 heading-section">
+        <div class="row pt-3 pb-5">
+            @if(!empty(Auth::user()))
+                <div class="col-md-4">
+                    <img class="mx-auto d-block" src="{{asset('view/logo.png')}}" height="200" alt="neighbourly-logo">
+                </div>
+            @endif
+            <div class="col-md-8 heading-section">
                 <div>
                     <h1>Neighbourly</h1>
                     <h3>Help each other out.</h3>
