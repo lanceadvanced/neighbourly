@@ -1,3 +1,4 @@
+@php use Carbon\Carbon; @endphp
 @extends('layout')
 @section('content')
     <div class="container-fluid">
@@ -20,18 +21,22 @@
                 </li>
             @endif
             @if(!empty($account->email))
-                    <li class="list-group-item">
-                        <span class="card-subtitle text-body-secondary">mail to {{$account->firstname}}:</span>
-                        <a href="mailto:{{$account->email}}">{{$account->email}}</a>
-                    </li>
+                <li class="list-group-item">
+                    <span class="card-subtitle text-body-secondary">mail to {{$account->firstname}}:</span>
+                    <a href="mailto:{{$account->email}}">{{$account->email}}</a>
+                </li>
             @endif
             <li class="list-group-item">
-                <span class="card-subtitle text-body-secondary">offer starts:</span> {{empty($offer->start) ? '–' : $offer->start}}<br>
-                <span class="card-subtitle text-body-secondary">offer ends:</span> {{empty($offer->end) ? '–' : $offer->start}}
+                <span
+                    class="card-subtitle text-body-secondary">offer starts:</span> {{empty($offer->start) ? '–' : Carbon::parse($offer->start)->format('d.m.Y')}}
+                <br>
+                <span
+                    class="card-subtitle text-body-secondary">offer ends:</span> {{empty($offer->end) ? '–' : Carbon::parse($offer->start)->format('d.m.Y')}}
             </li>
         </ul>
         <div class="card-body">
-            <a href="{{route('profile', ['accountID' => $account->getKey()])}}" class="card-link">view {{$account->firstname}}'s profile</a>
+            <a href="{{route('profile', ['accountID' => $account->getKey()])}}"
+               class="card-link">view {{$account->firstname}}'s profile</a>
         </div>
     </div>
 @endsection
