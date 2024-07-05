@@ -1,27 +1,11 @@
 @extends('layout')
-@section('head')
-
-@endsection
 @section('content')
-    <div class="card mt-5 mb-3">
-        <div class="card-body">
-            <h1 class="mt-3">Welcome</h1>
-            <h2 class="mb-3">Nadine</h2>
-            <h5 class="card-title">Your community</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">Wohnortstrasse 111, 3111 Bern</h6>
-            <form method="post" action="{{route('results')}}">
-                @csrf
-                <div class="input-group mb-3 mt-4">
-                    <input type="text" name="search-term" class="form-control" placeholder="What do you need help with?"
-                           aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-primary" type="submit" id="button-addon2">Find</button>
-                </div>
-            </form>
-        </div>
-    </div>
+    @if(!empty(Auth::user()))
+        @include('artifacts.landing')
+    @endif
     <div class="container-fluid">
         <div class="row pt-3 pb-5">
-            @if(!empty(Auth::user()))
+            @if(empty(Auth::user()))
                 <div class="col-md-4">
                     <img class="mx-auto d-block" src="{{asset('view/logo.png')}}" height="200" alt="neighbourly-logo">
                 </div>
@@ -46,7 +30,7 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="carousel-slide ">
-                    <h1>Create an Account</h1>
+                    <a class="stretched-link link-dark link-underline link-underline-opacity-0" href="{{route('register')}}"><h1>Create an Account</h1></a>
                 </div>
             </div>
             <div class="carousel-item">
@@ -69,19 +53,5 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    @if(!empty(Auth::user()))
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="What do you need?">
-            <button class="btn btn-outline-primary" type="button" id="request-search" data-target="#results"
-                    data-api-request="{{route('get-offers-from-request')}}">Search
-            </button>
-        </div>
-        <div id="results"></div>
-    @endif
-@endsection
-@section('scripts')
-    <script type="text/javascript" src="{{asset('view/js/jquery.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('view/js/api.js')}}"></script>
-    <script type="text/javascript" src="{{asset('view/js/bindings.js')}}"></script>
 @endsection
 

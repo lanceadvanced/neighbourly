@@ -26,29 +26,24 @@
 }
 
 .profile {
+    position: relative;
     height: 40px;
     width: 40px;
     border-radius: 50%;
-    background-color: #2d70f4;
     text-align: center;
     border: 2px solid #a0aec0;
 }
 
-.profile::before {
-    content: 'N';
-    line-height: 38px;
+.profile .profile-letter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 25px;
     font-weight: bold;
     color: white;
-}
-
-.profile.m {
-    border: 1px solid #a0aec0;
-    background-color: #d066b9;
-}
-
-.profile.m::before {
-    content: 'M';
+    text-shadow: 0 0 10px #555;
+    text-align: center;
 }
 
 

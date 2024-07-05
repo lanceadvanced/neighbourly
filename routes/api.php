@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\RequestController;
 use App\Models\Account;
 use App\Models\Offer;
@@ -17,3 +18,5 @@ Route::get('/sample-offers/{communityID}', function ($communityID) {
 Route::get('/offers/{communityID}', [RequestController::class, 'getOffersByCommunity']);
 
 Route::post('/get-offers-from-request', [RequestController::class, 'getOffersFromRequest'])->name('get-offers-from-request');
+
+Route::post('/get-communities-by-address', [CommunityController::class, 'getCommunitiesByAddress'])->name('get-communities-by-address');

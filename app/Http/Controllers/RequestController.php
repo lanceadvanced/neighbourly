@@ -12,14 +12,14 @@ use Illuminate\Http\Request;
 
 class RequestController extends Controller
 {
-    public static function getOffersFromRequest(Request $request): Factory|Application|View|ApplicationContract
+    public static function getOffersFromRequest($request, $communityID)
     {
         $response = Http::post(env('NEIGHBOURLY_API'), [
-            'community_id' => 1,
-            'requested_service' => $request->get('requested_service')
+            'community_id' => $communityID,
+            'requested_service' => $request
         ]);
 
-        return view('artifacts.offerResults')->with('offers', $response->json());
+        return $response->json();
     }
 
     public static function getOffersByCommunity($communityID): JsonResponse

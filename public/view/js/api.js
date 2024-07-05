@@ -5,7 +5,8 @@ API.invoker = null;
 API.getOffersFromRequest = function(invoker){
     API.invoker = invoker;
     let data = new FormData();
-    data.append('requested_service', invoker.parent().find('input').val());
+    let input = invoker.parent().find('input');
+    data.append(input.attr('name'), input.val());
     $.ajax({
         headers: {
             "X-CSRF-TOKEN": $(`meta[name="csrf-token"]`).attr("content")

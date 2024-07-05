@@ -1,24 +1,37 @@
 @extends('layout')
 @section('content')
-    <h5 class="mt-5">offer:</h5>
-    <h2>Katzen betreuen</h2>
+    <div class="container-fluid">
+        <h5 class="mt-5">Offer:</h5>
+        <h2>{{$offer->title}}</h2>
+    </div>
     <div class="card mt-4">
         <div class="card-body">
-            <span class="card-subtitle text-body-secondary" style="align-self: flex-end; float: left; bottom: 0; line-height: 40px; vertical-align: bottom">by Martin</span><div class="profile m ms-auto"></div>
-            <p class="card-text mt-3">Hallo liebe Nachbarn, ich hoffe, es geht euch allen gut! Falls jemand von euch eine Betreuung für seine Katzen braucht, helfe ich gerne aus.</p>
+            <span class="card-subtitle text-body-secondary">by {{$account->firstname}}</span>
+            <div class="profile float-end" style="background: {{$account->color}}">
+                <div class="profile-letter">{{substr($account->firstname, 0, 1)}}</div>
+            </div>
+            <p class="card-text mt-3">{!! $offer->text !!}</p>
         </div>
         <ul class="list-group list-group-flush">
+            @if(!empty($account->phone))
+                <li class="list-group-item">
+                    <span class="card-subtitle text-body-secondary">call {{$account->firstname}}:</span>
+                    <a href="tel:{{$account->phone}}">{{$account->phone}}</a>
+                </li>
+            @endif
+            @if(!empty($account->email))
+                    <li class="list-group-item">
+                        <span class="card-subtitle text-body-secondary">mail to {{$account->firstname}}:</span>
+                        <a href="mailto:{{$account->email}}">{{$account->email}}</a>
+                    </li>
+            @endif
             <li class="list-group-item">
-                <span class="card-subtitle text-body-secondary">contact Martin:</span>
-                <a href="#">069 420 42 73</a>
-            </li>
-            <li class="list-group-item">
-                <span class="card-subtitle text-body-secondary">offer starts:</span> –<br>
-                <span class="card-subtitle text-body-secondary">offer ends:</span> 30.09.2024
+                <span class="card-subtitle text-body-secondary">offer starts:</span> {{empty($offer->start) ? '–' : $offer->start}}<br>
+                <span class="card-subtitle text-body-secondary">offer ends:</span> {{empty($offer->end) ? '–' : $offer->start}}
             </li>
         </ul>
         <div class="card-body">
-            <a href="#" class="card-link">view Martin's profile</a>
+            <a href="{{route('profile', ['accountID' => $account->getKey()])}}" class="card-link">view {{$account->firstname}}'s profile</a>
         </div>
     </div>
 @endsection

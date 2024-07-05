@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 
 trait Associated
 {
-    public function association($key): Collection|Model|null
+    public function association($key): Collection|Model|self|null
     {
         if(isset($this->associations[$key])){
             $association = $this->associations[$key];
@@ -26,10 +26,12 @@ trait Associated
                     $results->push($result);
                 }
                 return $results;
-            } else if(isset($association['many'])){
-                return $association['many'][0]::where($association['many'][1], $this->getKey())->get();
+            } else if(isset($association['many']) || isset($association['one'])) {
+                $type = isset($association['many']) ? 'many' : 'one';
+                $association = $association[$type][0]::where($association[$type][1], $this->getKey())->get();
+                return $type == 'many' ? $association : $association[0];
             } else {
-                return $association[1]::find($this->{$association[0]});
+                return $association[0]::find($this->{$association[1]});
             }
 
         }

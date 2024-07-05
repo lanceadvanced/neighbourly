@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\Associated;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,7 +18,7 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Associated;
 
     /**
      * The attributes that are mass assignable.
@@ -52,4 +53,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    private array $associations = [
+        'account' => ['one' => [Account::class, 'fk_userID']],
+    ];
 }

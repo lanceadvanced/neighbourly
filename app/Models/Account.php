@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property $fk_userID
  * @property $firstname
  * @property $lastname
+ * @property $phone
+ * @property $email
  * @property $fk_communityID
  *
  * @mixin Eloquent
@@ -27,11 +29,15 @@ class Account extends Model
         'fk_userID',
         'firstname',
         'lastname',
+        'phone',
+        'email',
+        'color',
+        'fk_communityID'
     ];
 
     private array $associations = [
-        'userID' => [User::class, 'fk_userID'],
-        'communityID' => [Community::class, 'fk_communityID'],
+        'user' => [User::class, 'fk_userID'],
+        'community' => [Community::class, 'fk_communityID'],
         'offers' => ['many' => [Offer::class, 'fk_ownerID']],
     ];
 

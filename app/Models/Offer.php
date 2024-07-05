@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property $title
  * @property $text
+ * @property $start
+ * @property $end
  * @property $fk_ownerID
  *
  * @mixin Eloquent
@@ -24,6 +26,8 @@ class Offer extends Model
     protected $fillable = [
         "title",
         "text",
+        "start",
+        "end",
         "fk_ownerID",
     ];
 
